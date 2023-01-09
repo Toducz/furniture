@@ -2,6 +2,7 @@ package ro.sapientia.furniture.model;
 
 import lombok.Data;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,11 +24,11 @@ public class FurnitureItem implements Serializable {
     private Long id;
 
     @JoinColumn(name = "material")
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private Material material;
 
     @JoinColumn(name = "joinery")
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private Joinery joinery;
 
 }

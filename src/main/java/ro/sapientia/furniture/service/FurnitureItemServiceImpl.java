@@ -6,6 +6,7 @@ import ro.sapientia.furniture.model.FurnitureItem;
 import ro.sapientia.furniture.repository.FurnitureItemRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FurnitureItemServiceImpl implements FurnitureItemService {
@@ -21,5 +22,27 @@ public class FurnitureItemServiceImpl implements FurnitureItemService {
     @Override
     public FurnitureItem create(FurnitureItem furnitureItem) {
         return furnitureItemRepository.save(furnitureItem);
+    }
+
+    @Override
+    public Optional<FurnitureItem> getFurnitureById(Long id) {
+        return furnitureItemRepository.findById(id);
+    }
+
+    @Override
+    public FurnitureItem update(Long id, FurnitureItem furnitureItem) {
+
+        FurnitureItem furnitureItem1 = furnitureItemRepository.findById(id).orElseThrow();
+
+        furnitureItem1.setMaterial(furnitureItem.getMaterial());
+        furnitureItem1.setJoinery(furnitureItem1.getJoinery());
+
+        return furnitureItemRepository.save(furnitureItem1);
+    }
+
+    @Override
+    public void delete(Long id) {
+        FurnitureItem furnitureItem = furnitureItemRepository.findById(id).orElseThrow();
+        furnitureItemRepository.delete(furnitureItem);
     }
 }
