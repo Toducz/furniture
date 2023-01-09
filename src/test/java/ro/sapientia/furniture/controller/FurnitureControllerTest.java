@@ -39,4 +39,6 @@ public class FurnitureControllerTest {
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$[0].heigth", is(10)));
 	}
+
+
 }
