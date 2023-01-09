@@ -1,5 +1,6 @@
 package ro.sapientia.furniture.service;
 
+import org.springframework.stereotype.Service;
 import ro.sapientia.furniture.model.Joinery;
 
 import java.util.List;

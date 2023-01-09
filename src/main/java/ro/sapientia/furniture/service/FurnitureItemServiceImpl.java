@@ -1,5 +1,6 @@
 package ro.sapientia.furniture.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.sapientia.furniture.model.FurnitureItem;
@@ -9,13 +10,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class FurnitureItemServiceImpl implements FurnitureItemService {
 
     @Autowired
     FurnitureItemRepository furnitureItemRepository;
 
     @Override
-    public List<FurnitureItem> findAllFurniteItem() {
+    public List<FurnitureItem> findAllFurnitureItem() {
         return furnitureItemRepository.findAll();
     }
 

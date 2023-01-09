@@ -1,5 +1,6 @@
 package ro.sapientia.furniture.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.sapientia.furniture.model.Joinery;
@@ -9,11 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class JoineryServiceImpl implements JoinerySevice{
 
-    @Autowired
-    JoineryRepository joineryRepository;
-
+    private final JoineryRepository joineryRepository;
 
     @Override
     public List<Joinery> findAllJoinery() {

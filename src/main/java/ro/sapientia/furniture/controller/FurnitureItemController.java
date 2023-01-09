@@ -24,7 +24,7 @@ public class FurnitureItemController {
 
     @GetMapping("/all")
     public List<FurnitureItem> getFurnitureItems() {
-        return furnitureItemService.findAllFurniteItem();
+        return furnitureItemService.findAllFurnitureItem();
     }
 
     @PostMapping("/add")
