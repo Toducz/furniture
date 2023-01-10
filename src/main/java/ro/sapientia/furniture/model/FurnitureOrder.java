@@ -21,7 +21,8 @@ public class FurnitureOrder implements Serializable {
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
-    @Column(name = "date")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date", nullable = false)
     private Date date;
 
     @Column(name = "furniture_user")
@@ -41,5 +42,10 @@ public class FurnitureOrder implements Serializable {
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+
+    @PrePersist
+    private void onCreate() {
+        date = new Date();
     }
 }
