@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ro.sapientia.furniture.error.FurnitureItemNotFoundException;
 import ro.sapientia.furniture.model.FurnitureItem;
 import ro.sapientia.furniture.service.FurnitureItemService;
 
@@ -33,7 +34,7 @@ public class FurnitureItemController {
     }
 
     @GetMapping("/find/{id}")
-    public Optional<FurnitureItem> getFurnitureById(@PathVariable Long id) {
+    public Optional<FurnitureItem> getFurnitureById(@PathVariable Long id) throws FurnitureItemNotFoundException {
         return furnitureItemService.getFurnitureById(id);
     }
 

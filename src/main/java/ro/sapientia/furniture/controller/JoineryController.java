@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ro.sapientia.furniture.error.JoineryNotFoundException;
 import ro.sapientia.furniture.model.Joinery;
 import ro.sapientia.furniture.service.JoinerySevice;
 
@@ -33,7 +34,7 @@ public class JoineryController {
     }
 
     @GetMapping("/find/{id}")
-    public Optional<Joinery> getById(@PathVariable Long id) {
+    public Optional<Joinery> getById(@PathVariable Long id) throws JoineryNotFoundException {
         return joinerySevice.findJoineryById(id);
     }
 

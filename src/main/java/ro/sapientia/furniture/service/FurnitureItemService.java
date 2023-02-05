@@ -1,6 +1,8 @@
 package ro.sapientia.furniture.service;
 
 import lombok.AllArgsConstructor;
+import ro.sapientia.furniture.error.FurnitureItemNotFoundException;
+import ro.sapientia.furniture.error.JoineryNotFoundException;
 import ro.sapientia.furniture.model.FurnitureItem;
 
 import java.util.List;
@@ -12,7 +14,7 @@ public interface FurnitureItemService {
 
     public FurnitureItem create(FurnitureItem furnitureItem);
 
-    public Optional<FurnitureItem> getFurnitureById(Long id);
+    public Optional<FurnitureItem> getFurnitureById(Long id) throws FurnitureItemNotFoundException;
 
     FurnitureItem update(Long id, FurnitureItem furnitureItem);
 

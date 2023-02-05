@@ -1,5 +1,6 @@
 package ro.sapientia.furniture.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.CascadeType;

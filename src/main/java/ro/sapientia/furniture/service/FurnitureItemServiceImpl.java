@@ -3,6 +3,7 @@ package ro.sapientia.furniture.service;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.sapientia.furniture.error.FurnitureItemNotFoundException;
 import ro.sapientia.furniture.model.FurnitureItem;
 import ro.sapientia.furniture.repository.FurnitureItemRepository;
 
@@ -27,8 +28,14 @@ public class FurnitureItemServiceImpl implements FurnitureItemService {
     }
 
     @Override
-    public Optional<FurnitureItem> getFurnitureById(Long id) {
-        return furnitureItemRepository.findById(id);
+    public Optional<FurnitureItem> getFurnitureById(Long id) throws FurnitureItemNotFoundException {
+
+        var currentFurnitureItem = furnitureItemRepository.findById(id);
+        if(currentFurnitureItem.isEmpty()) {
+            throw new FurnitureItemNotFoundException("Furniture item doesn't exist!");
+        }
+
+        return Optional.of(currentFurnitureItem.get());
     }
 
     @Override

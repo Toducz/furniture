@@ -20,4 +20,5 @@ class FurnitureItemRepositoryTest {
         var result = furnitureItemRepository.findAll();
         assertEquals(0, result.size());
     }
+
 }
