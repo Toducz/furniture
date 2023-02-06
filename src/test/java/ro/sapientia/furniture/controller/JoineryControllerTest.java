@@ -2,12 +2,15 @@ package ro.sapientia.furniture.controller;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +33,7 @@ class JoineryControllerTest {
     private JoinerySevice joinerySevice;
 
     @Test
-    public void greetingShouldReturnMessageFromService() throws Exception {
+    public void findAll() throws Exception {
         final Joinery joinery = new Joinery();
         joinery.setPrice(12);
         when(joinerySevice.findAllJoinery()).thenReturn(List.of(joinery));
@@ -39,4 +42,24 @@ class JoineryControllerTest {
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].price", is(12.0)));
     }
+
+    @Test
+    public void findById() throws Exception {
+        final Joinery joinery = new Joinery();
+        joinery.setPrice(12.0);
+        joinery.setId(1L);
+        when(joinerySevice.findJoineryById(1L)).thenReturn(Optional.of(joinery));
+
+        this.mockMvc.perform(get("/furniture-joinery/find/1")).andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.price", is(12.0)));
+    }
+
+    @Test
+    public void deleteJoinery() throws Exception {
+        this.mockMvc.perform(delete("/furniture-joinery/delete/1"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
 }
